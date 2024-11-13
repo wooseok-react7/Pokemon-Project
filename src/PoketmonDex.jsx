@@ -22,12 +22,26 @@ const PoketmonDex = () => {
     navigate("/");
   };
 
+  const handleAddPokeball = (item) => {
+    const pocetId = fieldPokemon.some((pokemon) => pokemon.id === item.id);
+    if (pocetId) {
+      return toast.success("중복된 값입니다.");
+    }
+    if (fieldPokemon.length < 6) {
+      setFieldPokemon([...fieldPokemon, item]);
+    } else {
+      toast.success("6개를 초과했습니다");
+    }
+  };
+
   // const handleImageCilck = (id) => {
   //   navigate(`/pokemon/${id}`);
   // };
 
   return (
-    <PokemonContext.Provider value={{ fieldPokemon, setFieldPokemon }}>
+    <PokemonContext.Provider
+      value={{ fieldPokemon, setFieldPokemon, handleAddPokeball }}
+    >
       <ToastContainer />
       <PoketmonTitle onClick={titleCilck} />
 
