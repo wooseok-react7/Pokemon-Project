@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import PokemonMonsterBall from "../image/MonsterBall.png";
+import fieldPokemon from "../MOCK_DATA";
 import { toast } from "react-toastify";
-import { PokemonContext } from "../PokemonContext";
-import DexListData from "../MOCK_DATA";
-import { useNavigate } from "react-router-dom";
 
 const DexList = styled.div`
   margin-top: 250px;
@@ -39,27 +37,7 @@ const Pokeball = styled.img`
   }
 `;
 
-const PoketmonCard = ({}) => {
-  const { fieldPokemon, setFieldPokemon } = useContext(PokemonContext);
-
-  const navigate = useNavigate();
-
-  const handleAddPokeball = (item) => {
-    const pocetId = fieldPokemon.some((pokemon) => pokemon.id === item.id);
-    if (pocetId) {
-      return toast.success("중복된 값입니다.");
-    }
-    if (fieldPokemon.length < 6) {
-      setFieldPokemon([...fieldPokemon, item]);
-    } else {
-      toast.success("6개를 초과했습니다");
-    }
-  };
-
-  const handleImageCilck = (id) => {
-    navigate(`/pokemon/${id}`);
-  };
-
+const PoketmonCard = ({ DexListData, handleImageCilck, handleAddPokeball }) => {
   return (
     <div>
       <DexList>

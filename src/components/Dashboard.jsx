@@ -1,14 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import PokemonMonsterBall from "../image/MonsterBall.png";
 import styled from "styled-components";
-import { PokemonContext } from "../PokemonContext";
 
-const Dashboard = ({}) => {
-  const { fieldPokemon, setFieldPokemon } = useContext(PokemonContext);
-
-  const handleRemove = (id) => {
-    setFieldPokemon((data) => data.filter((item) => item.id !== id));
-  };
+const Dashboard = ({ fieldPokemon, handleRemove }) => {
   return (
     <DexField>
       {fieldPokemon.map((item) => (

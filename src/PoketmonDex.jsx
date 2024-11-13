@@ -2,18 +2,34 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import DexListData from "./MOCK_DATA";
 import PokemontitleImage from "./image/PokemonTitle.png";
 import SearchPokemon from "./components/SearchPokemon";
 import Dashboard from "./components/Dashboard";
 import PoketmonCard from "./components/PoketmonCard";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
-import { PokemonContext } from "./PokemonContext";
-import DexListData from "./MOCK_DATA";
+import { ToastContainer, toast } from "react-toastify";
 // import { useState } from "react";
 
 const PoketmonDex = () => {
   const [fieldPokemon, setFieldPokemon] = useState([]);
+
+  const handleAddPokeball = (item) => {
+    const pocetId = fieldPokemon.some((pokemon) => pokemon.id === item.id);
+    if (pocetId) {
+      return toast.success("중복된 값입니다.");
+    }
+    if (fieldPokemon.length < 6) {
+      setFieldPokemon([...fieldPokemon, item]);
+    } else {
+      toast.success("6개를 초과했습니다");
+    }
+  };
+
+  // 삭제
+  const handleRemove = (id) => {
+    setFieldPokemon((data) => data.filter((item) => item.id !== id));
+  };
 
   // 홈으로 이동
   const navigate = useNavigate();
@@ -22,22 +38,41 @@ const PoketmonDex = () => {
     navigate("/");
   };
 
-  // const handleImageCilck = (id) => {
-  //   navigate(`/pokemon/${id}`);
-  // };
+  const handleImageCilck = (id) => {
+    navigate(`/pokemon/${id}`);
+  };
+
+  const [search, setSearch] = useState("");
+
+  const PokemonSearch = DexListData.filter((item) =>
+    item.korean_name.includes(search)
+  );
+
+  const handleInput = (e) => {
+    setSearch(e.target.value);
+  };
 
   return (
-    <PokemonContext.Provider value={{ fieldPokemon, setFieldPokemon }}>
+    <>
       <ToastContainer />
       <PoketmonTitle onClick={titleCilck} />
 
-      <Dashboard />
+      <Dashboard handleRemove={handleRemove} fieldPokemon={fieldPokemon} />
       <DexField>
-        <SearchPokemon />
+        <SearchPokemon
+          search={search}
+          PokemonSearch={PokemonSearch}
+          handleInput={handleInput}
+          handleAddPokeball={handleAddPokeball}
+        />
       </DexField>
 
-      <PoketmonCard DexListData={DexListData} />
-    </PokemonContext.Provider>
+      <PoketmonCard
+        DexListData={DexListData}
+        handleImageCilck={handleImageCilck}
+        handleAddPokeball={handleAddPokeball}
+      />
+    </>
   );
 };
 

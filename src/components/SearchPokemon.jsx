@@ -1,8 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
-import DexListData from "../MOCK_DATA";
-import { PokemonContext } from "../PokemonContext";
 
 const InputAdd = styled.div`
   position: fixed;
@@ -50,20 +48,44 @@ const StyledInput = styled.input`
   color: #222;
   font-size: 16px;
 `;
+`
 
-const SearchPokemon = ({}) => {
-  const [search, setSearch] = useState("");
+// const StyledInput = styled.input`;
+//   max-width: 190px;
+//   border: none;
+//   outline: none;
+//   background: none;
+//   font-size: 18px;
+//   color: #222;
+//   padding: 15px 5px 10px 20px;
+//   box-shadow: inset 4px 4px 4px rgba(15, 15, 15, 0.315), 4px 4px 4px rgba(28, 28, 28, 0.13);
+//   border-radius: 25px;
+//   background-clip: padding-box;
 
-  const { handleAddPokeball } = useContext(PokemonContext);
+//   &:focus {
+//     padding-bottom: 10px;
+//   }
 
-  const PokemonSearch = DexListData.filter((item) =>
-    item.korean_name.includes(search)
-  );
+//   &::placeholder {
+//     color: #222;
+//     text-transform: uppercase;
+//     transition: all 0.3s ease;
+//     font-size: 19px;
+//     font-weight: 700;
+//     letter-spacing: 0.3px;
+//   }
 
-  const handleInput = (e) => {
-    setSearch(e.target.value);
-  };
+//   &:focus::placeholder {
+//     color: #999;
+//   }
+// `;
 
+const SearchPokemon = ({
+  search,
+  PokemonSearch,
+  handleInput,
+  handleAddPokeball,
+}) => {
   return (
     <InputAdd>
       <StyledInput
