@@ -47,7 +47,7 @@ const PoketmonCard = ({}) => {
   const handleAddPokeball = (item) => {
     const pocetId = fieldPokemon.some((pokemon) => pokemon.id === item.id);
     if (pocetId) {
-      return toast.success("중복된 값입니다.");
+      return toast.success("중 복된 값입니다.");
     }
     if (fieldPokemon.length < 6) {
       setFieldPokemon([...fieldPokemon, item]);
