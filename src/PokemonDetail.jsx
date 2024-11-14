@@ -1,6 +1,6 @@
 // import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import DexListData from "./MOCK_DATA";
+import DexListData from "./mockData";
 import styled from "styled-components";
 import PokemonCard from "./image/poketmon2.jpg";
 

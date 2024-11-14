@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { useState } from "react";
-import DexListData from "../MOCK_DATA";
+import DexListData from "../mockData";
 import { PokemonContext } from "../PokemonContext";
 
 const InputAdd = styled.div`

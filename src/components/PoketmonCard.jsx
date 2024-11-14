@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PokemonMonsterBall from "../image/MonsterBall.png";
 import { toast } from "react-toastify";
 import { PokemonContext } from "../PokemonContext";
-import DexListData from "../MOCK_DATA";
+import DexListData from "../mockData";
 import { useNavigate } from "react-router-dom";
 
 const DexList = styled.div`

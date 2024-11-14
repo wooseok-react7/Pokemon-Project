@@ -9,7 +9,6 @@ import PoketmonCard from "./components/PoketmonCard";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { PokemonContext } from "./PokemonContext";
-import DexListData from "./MOCK_DATA";
 // import { useState } from "react";
 
 const PoketmonDex = () => {
@@ -50,7 +49,7 @@ const PoketmonDex = () => {
         <SearchPokemon />
       </DexField>
 
-      <PoketmonCard DexListData={DexListData} />
+      <PoketmonCard />
     </PokemonContext.Provider>
   );
 };
